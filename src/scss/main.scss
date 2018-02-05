@@ -1,0 +1,220 @@
+$menu__item-classes: bar coffee sweet food drink;
+
+@each $class in $menu__item-classes {
+  $len: length($menu__item-classes) + 1;
+  $i: $len - index($menu__item-classes, $class);
+
+  .menu__item_#{$class} {
+    z-index: #{$i};
+    cursor: pointer;
+  }
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.main {
+  background: linear-gradient(135deg, #d3e2d4, #819083) top left fixed;
+  overflow: auto;
+  height: 100%;
+  font: 14px 'Ubuntu Condensed', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+}
+
+.bar {
+  height: 80px;
+  background: linear-gradient(135deg, #f7ffce, #e2e4b8);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 20px;
+  font-size: 14px;
+  color: #af9a50;
+
+  & > p {
+    line-height: 14px !important;
+    float: left;
+    margin-left: 10px;
+    margin-top: -3px;
+  }
+}
+
+.item-icon {
+  background: url(../img/items_icons.png) no-repeat top left;
+  height: 60px;
+  width: 65px;
+  float: left;
+  margin-right: 10px;
+  transition: all 200ms ease;
+}
+
+.item-details-inner {
+  float: left;
+  width: 50%;
+}
+
+.item-details {
+  font-size: 14px;
+
+  & > div {
+    float: left;
+    line-height: 35px;
+    width: 100%;
+  }
+
+  & > div > p {
+    @extend .item-details-inner;
+  }
+
+  & > div > .counter {
+    @extend .item-details-inner;
+
+    text-align: right;
+    font-size: 14px;
+
+    & > div {
+      width: 29px;
+      height: 20px;
+      float: right;
+      text-align: center;
+      line-height: 20px;
+      margin-top: 7px;
+
+      .menu__item_coffee & {
+        background: #fff2be;
+      }
+
+      .menu__item_sweet & {
+        background: #ffc5b2;
+      }
+
+      .menu__item_food & {
+        background: #eca9ba;
+      }
+
+      .menu__item_drink & {
+        background: #8a7193;
+      }
+    }
+
+    & > .number {
+      display: none;
+
+      &.active {
+        display: inline;
+      }
+    }
+
+    & > .minus {
+      margin-right: 1px;
+      margin-left: 11px;
+      border-radius: 30px 0 0 30px;
+    }
+
+    & > .plus {
+      margin-left: 1px;
+      border-radius: 0 30px 30px 0;
+    }
+  }
+}
+
+.menu {
+  width: 280px;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+
+.menu__item_coffee {
+  background: linear-gradient(135deg, #ffe26f, #e8c962);
+  color: #e07556;
+
+  & > .box > .item-icon {
+    background-position: 0 0;
+  }
+}
+
+.menu__item_sweet {
+  background: linear-gradient(135deg, #f3825f, #f3825f);
+  color: #9c3c53;
+
+  & > .box > .item-icon {
+    background-position: -70px 0;
+  }
+}
+
+.menu__item_food {
+  background: linear-gradient(135deg, #a7425c, #993950);
+  color: #402344;
+
+  & > .box > .item-icon {
+    background-position: -137px 0;
+  }
+}
+
+.menu__item_drink {
+  background: linear-gradient(135deg, #563761, #502f55);
+  border-radius: 0 0 4px 4px;
+  color: #1c1730;
+
+  & > .box > .item-icon {
+    background-position: -208px 0;
+  }
+}
+
+.menu__item {
+  height: 100px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+  font-size: 21px;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+  transition: all 200ms ease;
+
+  & > .box {
+    overflow: hidden;
+    height: 100%;
+
+    & > p {
+      line-height: 60px;
+      user-select: none;
+    }
+  }
+
+  &.active {
+    height: 260px;
+
+    & > .box > .item-icon {
+      float: none;
+      margin: 0 auto;
+      transform: scale(1.5);
+    }
+
+    & > .box > p {
+      text-align: center;
+    }
+  }
+}
+
+.logs {
+  width: 12px;
+  float: left;
+}
+
+.logs > span {
+  height: 1px;
+  background: #af9a50;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.items-total {
+  margin-top: 35px;
+}
